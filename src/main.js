@@ -49,7 +49,7 @@ function generateTicket() {
   return ticket;
 }
 
-export default async ({ res, log }) => {
+export default async ({ log }) => {
   const client = new Client()
     .setEndpoint(process.env.APPWRITE_ENDPOINT)
     .setProject(process.env.APPWRITE_PROJECT_ID)
@@ -91,12 +91,7 @@ export default async ({ res, log }) => {
     );
 
     log("✅ Ticket saved: " + JSON.stringify(saved));
-    return res.json({
-      success: true,
-      saved,
-    });
   } catch (err) {
     log("❌ Error: " + err.message);
-    return res.json({ success: false, error: err.message });
   }
 };
